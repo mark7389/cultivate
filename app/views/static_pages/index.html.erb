@@ -5,13 +5,23 @@
 
   <section class="main">
     <ul class="todo-list">
-    </ul>
 
+    </ul>
   </section>
 </section>  
 
 <script>
   $(function() {
-    console.log("Hello Javascript");
+    $.get("/tasks").done( function( data ) {
+      var htmlString = "";
+
+      $.each(data, function(index,  task) {
+        var liElement = '<li><div class="view"><input class="toggle" type="checkbox"><label>' + 
+          task.title +
+          '</label></div></li>';
+        htmlString += liElement;
+      });
+        console.log(task.title);
+    });
   });
 </script>
