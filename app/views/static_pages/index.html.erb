@@ -15,12 +15,20 @@
 
 
 <script>
-  $(function() {
+ $(function() {
     $('#new-form').submit(function(event) {
       event.preventDefault();
-      var textbox = $('.new-goal');
-      console.log("Task: ", textbox.val());
+      var textbox = $('.new-todo');
+      var payload = {
+        task: {
+          title: textbox.val()
+        }
+      };
+      $.post("/tasks", payload).done(function(data) {
+        console.log(data);
+      });
     });
+
 
     function taskHtml(task) {
       var checkedStatus = task.done ? "checked" : "";
